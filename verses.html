@@ -7,141 +7,112 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* LIGHT MODE DEFAULTS */
     body {
       background: linear-gradient(to bottom, #FAF3E0 20%, #FDE68A 100%);
       min-height: 100vh;
       font-family: 'Mukta', sans-serif;
     }
-    /* Keep your original toggle logic */
-    #languageToggle.toggled #toggleCircle {
-      transform: translateX(56px);
-    }
-
-    /* Custom scrollbars remain the same */
-    #verse-list-desktop::-webkit-scrollbar {
-      width: 8px;
-    }
-    #verse-list-desktop::-webkit-scrollbar-track {
-      background: #fde68a;
-      border-radius: 10px;
-    }
-    #verse-list-desktop::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg, #ff9800, #ff5722);
-      border-radius: 10px;
-    }
-    #verse-list-desktop::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(180deg, #ff5722, #e64a19);
-    }
-    #verse-list-mobile::-webkit-scrollbar {
-      height: 8px;
-    }
-    #verse-list-mobile::-webkit-scrollbar-track {
-      background: #fde68a;
-      border-radius: 10px;
-    }
-    #verse-list-mobile::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg, #ff9800, #ff5722);
-      border-radius: 10px;
-    }
-    #verse-list-mobile::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(180deg, #ff5722, #e64a19);
-    }
-
-    /* Language Toggle styling */
     #languageToggle {
-      position: relative;
-      width: 100px;
-      height: 40px;
-      background: linear-gradient(to right, #75fcf1, #cc7efa);
-      border-radius: 20px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      cursor: pointer;
-      overflow: hidden;
-    }
-    #toggleCircle {
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      width: 36px;
-      height: 36px;
-      background: #fff;
-      border-radius: 50%;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease-in-out;
+  position: relative;
+  width: 80px;
+  height: 35px;
+  background: linear-gradient(to right, #75fcf1, #cc7efa);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#toggleCircle {
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  width: 28px;
+  height: 28px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#languageToggle.toggled {
+  background: linear-gradient(to right, #cc7efa, #75fcf1);
+}
+
+#languageToggle.toggled #toggleCircle {
+  transform: translateX(10px);
+}
+
+.toggle-text {
+  font-size: 14px;
+  font-weight: bold;
+  color: rgb(255, 86, 8);
+  z-index: 1;
+  width: 30px;
+  text-align: center;
+}
+
+
+    button {
+      max-width: 90%;
+      display: block;
+      margin: auto;
     }
   </style>
 </head>
 <body class="text-gray-800">
-  <!-- Sticky Header -->
   <header class="fixed w-full top-0 z-50 p-4 bg-gradient-to-r from-orange-600 to-yellow-500 text-white shadow-xl">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
-      <!-- Smaller text on mobile, bigger on larger screens -->
       <h1 id="chapter-title" class="text-lg sm:text-xl md:text-2xl font-bold tracking-wide">
         Chapter 1: Arjuna Visada Yoga
       </h1>
-      
-      <!-- Right-side toggles -->
       <div class="flex items-center space-x-4">
-        <!-- Language Toggle -->
-        <div id="languageToggle" class="relative w-32 h-10 bg-orange-100 rounded-full shadow-lg cursor-pointer group" onclick="toggleLanguage()">
-          <div id="toggleCircle" class="absolute top-1 left-1 w-8 h-8 bg-white rounded-full shadow-md transition-transform duration-300 ease-in-out"></div>
-          <div class="absolute inset-0 flex items-center justify-between px-4 text-xs sm:text-sm font-semibold pointer-events-none">
-            <span class="text-orange-700">EN</span>
-            <span class="text-orange-700">HI</span>
-          </div>
-        </div>
+        <div id="languageToggle" onclick="toggleLanguage()">
+          <span class="toggle-text">EN</span>
+          <div id="toggleCircle"></div>
+          <span class="toggle-text">HI</span>
+      </div>
+      
       </div>
     </div>
   </header>
-  
-  <!-- Main Content Wrapper -->
-  <!-- More padding on large screens, smaller on mobile -->
-  <div class="max-w-7xl mx-auto pt-16 sm:pt-24 px-4 sm:px-6 md:px-8">
+  <div class="max-w-full w-full px-4 pt-16 sm:pt-24">
     <div class="flex flex-col lg:flex-row gap-4 sm:gap-6">
-      <!-- Desktop Verse Selection Sidebar -->
       <aside id="verse-list-desktop" class="hidden lg:block w-full lg:w-72 flex-shrink-0 bg-white rounded-xl shadow-lg p-4 lg:h-[calc(100vh-10rem)] lg:sticky lg:top-24 overflow-y-auto">
         <h2 class="text-lg sm:text-xl font-bold text-orange-700 mb-4">Select Verse</h2>
         <div id="verse-list-container-desktop" class="space-y-2"></div>
       </aside>
-
-      <!-- Verse Display -->
       <main class="flex-1">
-        <!-- Slightly smaller padding on mobile, bigger on desktop -->
         <div class="bg-white border-4 border-orange-600 rounded-xl shadow-lg p-4 sm:p-6">
-          <!-- Verse Section -->
           <div class="p-4 sm:p-6 md:p-8 bg-gradient-to-br from-orange-50 to-yellow-50 border-b-4 border-orange-600">
             <h2 id="verse-title" class="text-lg sm:text-xl md:text-2xl font-bold text-orange-700 mb-4">Verse 1</h2>
-            <p id="verse-text" class="text-base sm:text-lg md:text-xl font-semibold text-gray-900 leading-relaxed text-center">
+            <p id="verse-text" class="text-base sm:text-lg md:text-xl font-semibold text-gray-900 leading-relaxed text-center break-words whitespace-normal">
               धृतराष्ट्र उवाच | धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः |  
               मामकाः पाण्डवाश्चैव किमकुर्वत सञ्जय ॥१॥
             </p>
             <hr class="my-4 border-orange-200" />
-            <button id="play-verse" class="bg-orange-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-orange-600 transition-all">
+            <button id="play-verse" class="bg-orange-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-orange-600">
               🔊 Play Verse
             </button>
           </div>
-          <!-- Translation Section -->
           <div class="p-4 sm:p-6 md:p-8 bg-white">
             <h3 class="text-base sm:text-lg md:text-xl font-semibold text-orange-700 mb-3">Translation</h3>
-            <p id="verse-translation" class="text-gray-900 leading-relaxed italic border-l-4 border-orange-200 pl-4">
+            <p id="verse-translation" class="text-gray-900 leading-relaxed italic border-l-4 border-orange-200 pl-4 break-words whitespace-normal">
               Dhritarashtra said: O Sanjaya, what did my sons and the sons of Pandu actually do when, eager for battle, they gathered together on the holy field of Kurukshetra?
             </p>
             <hr class="my-4 border-orange-200" />
-            <button id="play-translation" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 transition-all mt-2">
+            <button id="play-translation" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 mt-2">
               🔊 Play Translation
             </button>
           </div>
         </div>
-
-        <!-- Mobile Verse Selection -->
-        <div id="verse-list-mobile" class="lg:hidden mt-4 sm:mt-6 overflow-x-auto whitespace-nowrap bg-white rounded-xl shadow-lg p-4">
-          <!-- Verse Buttons Inserted Here -->
-        </div>
-
-        <!-- Back Button -->
+        <div id="verse-list-mobile" class="lg:hidden mt-4 sm:mt-6 overflow-x-auto whitespace-nowrap bg-white rounded-xl shadow-lg p-4"></div>
         <div class="mt-4 sm:mt-6">
-          <a href="index.html" class="inline-flex items-center px-6 py-3 bg-orange-500 text-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5">
+          <a href="index.html" class="inline-flex items-center px-6 py-3 bg-orange-500 text-white rounded-lg shadow-md hover:shadow-lg hover:-translate-y-0.5">
             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
             </svg>
@@ -151,16 +122,11 @@
       </main>
     </div>
   </div>
-
-  <!-- Footer -->
   <footer class="mt-8 sm:mt-12 py-4 sm:py-6 bg-white border-t border-orange-100">
     <div class="max-w-7xl mx-auto px-4 text-center text-orange-700">
-      <p class="text-sm">
-        📜 © 2025 Bhagavad Gita Project | सर्वं कृष्णार्पणम् 🙏
-      </p>
+      <p class="text-sm">📜 © 2025 Bhagavad Gita Project | सर्वं कृष्णार्पणम् 🙏</p>
     </div>
   </footer>
-
   <script src="script.js"></script>
 </body>
 </html>
