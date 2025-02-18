@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bhagavad Gita</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+    .chapter-card {
+      display: block;
+      padding: 16px;
+      background: linear-gradient(135deg, #ffa667, #ff84a1);
+      color: rgb(0, 0, 0);
+      text-align: center;
+      border-radius: 12px;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .chapter-card:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(135deg, #fb8e41, #fc5179);
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(-45deg, #fbfea8, #ffc888, #ff9d89);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    /* Gradient Animation */
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      background: rgba(255, 165, 0, 0.9);
+    }
+
+    footer {
+      background: rgba(255, 255, 255, 0.9);
+    }
+  </style>
+</head>
+<body class="bg-orange-200 text-gray-900">
+  <!-- Header Section -->
+  <header class="fixed w-full top-0 z-10 p-4 bg-gradient-to-r from-orange-600 to-yellow-500 text-white text-center text-3xl font-extrabold shadow-xl tracking-wide">
+    🕉️ श्रीमद्भगवद्गीता 🕉️
+  </header>
+
+  <!-- Main Content -->
+  <main class="pt-16 p-6 text-center">
+    <h1 class="text-3xl mt-6 font-semibold">Welcome to Bhagavad Gita</h1>
+    <p class="mt-2 text-gray-800">
+      Read the sacred verses of the Bhagavad Gita, understand their meaning—completely free and without any ads,
+      ensuring a pure and uninterrupted experience.
+    </p>
+
+    <!-- Chapter List -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6 max-w-5xl mx-auto">
+  
+      <a href="verses.html?chapter=1" class="chapter-card">
+        🏵️ 1. Arjuna Vishada Yoga
+      </a>
+    
+      <a href="verses.html?chapter=2" class="chapter-card">
+        🏵️ 2. Sankhya Yoga
+      </a>
+    
+      <a href="verses.html?chapter=3" class="chapter-card">
+        🏵️ 3. Karma Yoga
+      </a>
+    
+      <a href="verses.html?chapter=4" class="chapter-card">
+        🏵️ 4. Jnana Yoga
+      </a>
+    
+      <a href="verses.html?chapter=5" class="chapter-card">
+        🏵️ 5. Karma Vairagya Yoga
+      </a>
+    
+      <a href="verses.html?chapter=6" class="chapter-card">
+        🏵️ 6. Abhyasa Yoga
+      </a>
+    
+      <a href="verses.html?chapter=7" class="chapter-card">
+        🏵️ 7. Paramahamsa Vijnana Yoga
+      </a>
+    
+      <a href="verses.html?chapter=8" class="chapter-card">
+        🏵️ 8. Aksara-Parabrahman Yoga
+      </a>
+    
+      <a href="verses.html?chapter=9" class="chapter-card">
+        🏵️ 9. Raja-Vidya-Guhya Yoga
+      </a>
+    
+      <a href="verses.html?chapter=10" class="chapter-card">
+        🏵️ 10. Vibhuti-Vistara-Yoga
+      </a>
+    
+      <a href="verses.html?chapter=11" class="chapter-card">
+        🏵️ 11. Vishvarupa-Darsana Yoga
+      </a>
+    
+      <a href="verses.html?chapter=12" class="chapter-card">
+        🏵️ 12. Bhakti Yoga
+      </a>
+    
+      <a href="verses.html?chapter=13" class="chapter-card">
+        🏵️ 13. Ksetra-Ksetrajna-Vibhaga Yoga
+      </a>
+    
+      <a href="verses.html?chapter=14" class="chapter-card">
+        🏵️ 14. Gunatraya-Vibhaga Yoga
+      </a>
+    
+      <a href="verses.html?chapter=15" class="chapter-card">
+        🏵️ 15. Purushottama Yoga
+      </a>
+    
+      <a href="verses.html?chapter=16" class="chapter-card">
+        🏵️ 16. Daivasura-Sampad-Vibhaga Yoga
+      </a>
+    
+      <a href="verses.html?chapter=17" class="chapter-card">
+        🏵️ 17. Sraddhatraya-Vibhaga Yoga
+      </a>
+    
+      <a href="verses.html?chapter=18" class="chapter-card">
+        🏵️ 18. Moksha-Sannyasa Yoga
+      </a>
+    
+    </div>
+    
+    <!-- Call to Action -->
+    <button class="mt-6 px-8 py-3 bg-orange-600 text-white rounded-lg shadow-md text-lg hover:bg-orange-800 transform hover:scale-105 transition">
+      Start Reading
+    </button>
+  </main>
+
+  <!-- Footer -->
+  <footer class="p-4 text-center text-orange-700 bg-white shadow-t-xl">
+    📜 © 2025 Bhagavad Gita Project | सर्वं कृष्णार्पणम् 🙏
+  </footer>
+  
+</body>
+</html>

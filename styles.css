@@ -1,0 +1,6 @@
+/* Custom CSS for the language toggle button */
+/* Adjust the translation distance as needed */
+#languageToggle.toggled #toggleCircle {
+    transform: translateX(60px);
+  }
+  
