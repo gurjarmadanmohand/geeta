@@ -225,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function () {
   languageToggle.addEventListener("click", function () {
     currentLanguage = currentLanguage === "english" ? "hindi" : "english";
     stopSpeech();
-    toggleCircle.classList.toggle("translate-x-14");
+    toggleCircle.classList.toggle("translate-x-11");
     loadData();
   });
 });
