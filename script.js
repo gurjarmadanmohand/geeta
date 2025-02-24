@@ -136,22 +136,26 @@ document.addEventListener("DOMContentLoaded", function () {
         // Cancel any ongoing speech when reloading data
         stopSpeech();
 
-        // Function to display a given verse and update the play buttons and highlight
-        function displayVerse(verse, index, btn) {
-          stopSpeech();  // Cancel current speech when changing verses
-          currentVerseIndex = index;
-          verseTitleEl.innerHTML = `<b>Verse ${verse.verse_number}:</b>`;
-          verseTextEl.innerHTML = `<pre>${verse.text}</pre>`;
-          verseTranslationEl.innerHTML = `<p>${verse.meaning}</p>`;
+// ... (previous code remains the same until displayVerse)
 
-          // Remove highlight from all verse items in desktop and mobile list.
-          document.querySelectorAll(".verse-item").forEach(item => item.classList.remove("bg-orange-500", "text-white"));
-          btn.classList.add("bg-orange-500", "text-white");
+function displayVerse(verse, index, btn) {
+  stopSpeech();  // Cancel current speech when changing verses
+  currentVerseIndex = index;
+  verseTitleEl.innerHTML = `<b>Verse ${verse.verse_number}:</b>`;
+  // Use <p> directly to match HTML structure and leverage CSS
+  verseTextEl.innerHTML = verse.text;
+  verseTranslationEl.innerHTML = `<p>${verse.meaning}</p>`;
 
-          // Update play buttons: play verse text in Hindi; play translation in en-US if language is english, else hi-IN.
-          playVerseBtn.onclick = () => toggleSpeech(verse.text, "hi-IN", playVerseBtn);
-          playTranslationBtn.onclick = () => toggleSpeech(verse.meaning, currentLanguage === "english" ? "en-US" : "hi-IN", playTranslationBtn);
-        }
+  // Remove highlight from all verse items in desktop and mobile list.
+  document.querySelectorAll(".verse-item").forEach(item => item.classList.remove("bg-orange-500", "text-white"));
+  btn.classList.add("bg-orange-500", "text-white");
+
+  // Update play buttons: play verse text in Hindi; play translation in en-US if language is English, else hi-IN.
+  playVerseBtn.onclick = () => toggleSpeech(verse.text, "hi-IN", playVerseBtn);
+  playTranslationBtn.onclick = () => toggleSpeech(verse.meaning, currentLanguage === "english" ? "en-US" : "hi-IN", playTranslationBtn);
+}
+
+// ... (rest of the code remains the same)
 
         // Populate desktop verse list
         versesArray.forEach((verse, index) => {
@@ -201,7 +205,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "inline-block",
             "min-w-[60px]"
           );
-          btn.onclick = () => displayVerse(verse, index, btn, 'mobile');
+          btn.onclick = () => displayVerse(verse, index, btn);
           verseListMobile.appendChild(btn);
         });
         
@@ -209,10 +213,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // Display the first verse by default if none is selected
         if (versesArray.length > 0) {
           let mobileBtns = Array.from(verseListMobile.children);
-          displayVerse(versesArray[currentVerseIndex], currentVerseIndex, mobileBtns[currentVerseIndex] || mobileBtns[0])
+          displayVerse(versesArray[currentVerseIndex], currentVerseIndex, mobileBtns[currentVerseIndex] || mobileBtns[0]);
           let desktopBtns = Array.from(verseListDesktop.children);
           displayVerse(versesArray[currentVerseIndex], currentVerseIndex, desktopBtns[currentVerseIndex] || desktopBtns[0]);
-         ;
         }
       })
       .catch(error => console.error("❌ Error loading JSON:", error));
@@ -228,4 +231,22 @@ document.addEventListener("DOMContentLoaded", function () {
     toggleCircle.classList.toggle("translate-x-11");
     loadData();
   });
+
+  // Reapply text constraints after load (from previous fix)
+  const verseText = document.getElementById('verse-text');
+  if (verseText) {
+    function fixVerseOverflow() {
+      verseText.style.wordBreak = 'break-all';
+      verseText.style.overflowWrap = 'break-word';
+      verseText.style.overflowX = 'hidden';
+      verseText.style.maxWidth = '100%';
+    }
+
+    fixVerseOverflow();
+
+    const observer = new MutationObserver(fixVerseOverflow);
+    observer.observe(verseText, { childList: true, subtree: true });
+    
+    window.addEventListener('unload', () => observer.disconnect());
+  }
 });
