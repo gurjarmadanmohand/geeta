@@ -7,61 +7,71 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      background: linear-gradient(to bottom, #FAF3E0 20%, #FDE68A 100%);
-      min-height: 100vh;
-      font-family: 'Mukta', sans-serif;
+ body {
+    background: linear-gradient(to bottom, #FAF3E0 20%, #FDE68A 100%);
+    min-height: 100vh;
+    font-family: 'Mukta', sans-serif;
+  }
+  #languageToggle {
+    position: relative;
+    width: 80px;
+    height: 35px;
+    background: linear-gradient(to right, #79ccff, #cc7efa);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  #toggleCircle {
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    width: 28px;
+    height: 28px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  #languageToggle.toggled {
+    background: linear-gradient(to right, #000000, #fa7897);
+  }
+
+  #languageToggle.toggled #toggleCircle {
+    transform: translateX(10px);
+  }
+
+  .toggle-text {
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(255, 86, 8);
+    z-index: 1;
+    width: 30px;
+    text-align: center;
+  }
+
+  button {
+    max-width: 90%;
+    display: block;
+    margin: auto;
+  }
+
+  /* Mobile-specific fix for verse text */
+  @media (max-width: 768px) {
+    p#verse-text {
+      font-size: 1rem; /* Slightly smaller font size for mobile */
+      word-break: break-all; /* Forces breaking of text at any character */
+      overflow-wrap: break-word; /* Ensures long strings wrap */
+      -webkit-hyphens: auto; /* Optional: enables hyphenation for better wrapping */
+      hyphens: auto;
     }
-    #languageToggle {
-  position: relative;
-  width: 80px;
-  height: 35px;
-  background: linear-gradient(to right, #75fcf1, #cc7efa);
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px;
-  cursor: pointer;
-  transition: background 0.3s ease-in-out;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-#toggleCircle {
-  position: absolute;
-  top: 3px;
-  left: 4px;
-  width: 28px;
-  height: 28px;
-  background: white;
-  border-radius: 50%;
-  transition: transform 0.3s ease-in-out;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-#languageToggle.toggled {
-  background: linear-gradient(to right, #cc7efa, #75fcf1);
-}
-
-#languageToggle.toggled #toggleCircle {
-  transform: translateX(10px);
-}
-
-.toggle-text {
-  font-size: 14px;
-  font-weight: bold;
-  color: rgb(255, 86, 8);
-  z-index: 1;
-  width: 30px;
-  text-align: center;
-}
-
-
-    button {
-      max-width: 90%;
-      display: block;
-      margin: auto;
-    }
+  }
   </style>
 </head>
 <body class="text-gray-800">
