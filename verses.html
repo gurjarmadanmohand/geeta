@@ -62,9 +62,20 @@
       margin: auto;
     }
   
-    /* Mobile-specific fix for verse text (updated) */
+    /* Default (Desktop) styling for verse text - restores original look */
+    p#verse-text {
+      font-size: 1.125rem; /* Matches text-base in Tailwind */
+      text-align: center;
+      font-weight: 600;
+      color: #1A202C;
+      line-height: 1.625; /* Matches leading-relaxed */
+      break-words: break-word; /* Keeps Tailwind’s default break-words */
+      white-space: normal; /* Ensures normal whitespace behavior */
+    }
+  
+    /* Mobile-specific fix for verse text (up to 768px) */
     @media (max-width: 768px) {
-      p#verse-text {
+      p#verse-text, .verse-text-content {
         font-size: 0.9rem; /* Smaller font size for mobile */
         word-break: break-all; /* Breaks text at any character */
         overflow-wrap: break-word; /* Ensures long strings wrap */
@@ -72,6 +83,9 @@
         hyphens: auto;
         max-width: 100%; /* Ensures text doesn’t exceed container width */
         padding: 0 4px; /* Slight padding to prevent edge clipping */
+        overflow-x: hidden; /* Prevents horizontal overflow */
+        display: block; /* Ensures block-level behavior for consistent wrapping */
+        text-align: left; /* Adjusts alignment for better mobile fit, optional */
       }
     }
   </style>
